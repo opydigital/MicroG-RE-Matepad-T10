@@ -1,29 +1,29 @@
 # Changelog — MicroG-RE-Matepad-T10
 
-Resumo das alterações aplicadas sobre `MorpheApp/MicroG-RE` para uso em dispositivo Huawei antigo (2 GB de RAM, sem HMS):
+Summary of changes applied on top of `MorpheApp/MicroG-RE` for older Huawei devices (2 GB RAM, no HMS):
 
-## 1. Perfil de Dispositivo Padrão (Pixel XL — Android 10)
-- Adicionado `play-services-core/src/main/res/xml/profile_marlin_29.xml` com os dados do **Google Pixel XL (`marlin`, Android 10 / SDK 29)**.
-- Alterado o perfil padrão em `play-services-base/core/src/main/kotlin/org/microg/gms/settings/SettingsProvider.kt` (`queryProfile`) de `"auto"` para `"marlin_29"`.
+## 1. Default Device Profile (Pixel XL — Android 10)
+- Added `play-services-core/src/main/res/xml/profile_marlin_29.xml` for **Google Pixel XL (`marlin`, Android 10 / SDK 29)**.
+- Updated the default profile in `play-services-base/core/src/main/kotlin/org/microg/gms/settings/SettingsProvider.kt` (`queryProfile`) from `"auto"` to `"marlin_29"`.
 
-## 2. Opções de Privacidade por Padrão
-- Atualizados `SettingsProvider.kt` (`queryAuth`) e `play-services-core/src/main/res/xml/preferences_privacy.xml`:
-  - Ativadas por padrão (`true`): `TRUST_GOOGLE`, `VISIBLE`, `INCLUDE_ANDROID_ID`, `STRIP_DEVICE_NAME`.
-  - Desativadas por padrão (`false`): `TWO_STEP_VERIFICATION` (solicitação de verificação em duas etapas) e `FIND_DEVICES` (localizador de dispositivos).
+## 2. Privacy Defaults
+- Updated `SettingsProvider.kt` (`queryAuth`) and `play-services-core/src/main/res/xml/preferences_privacy.xml`:
+  - Enabled by default (`true`): `TRUST_GOOGLE`, `VISIBLE`, `INCLUDE_ANDROID_ID`, `STRIP_DEVICE_NAME`.
+  - Disabled by default (`false`): `TWO_STEP_VERIFICATION` and `FIND_DEVICES`.
 
-## 3. Otimização de Mapas (Sem HMS)
-- Módulo `:play-services-maps:core:hms` tornado opcional e desativado por padrão via `hasModule("maps_hms", false)` em `settings.gradle` e `play-services-core/build.gradle`, mantendo **Mapbox/MapLibre** e **VTM** para reduzir tamanho do APK e consumo de RAM.
+## 3. Maps Optimization (No HMS)
+- Made `:play-services-maps:core:hms` optional and disabled by default via `hasModule("maps_hms", false)` in `settings.gradle` and `play-services-core/build.gradle`, keeping **Mapbox/MapLibre** and **VTM** to reduce APK size and RAM usage.
 
-## 4. Módulo Proxy Leve (`:gms-proxy` → `com.google.android.gms`)
-- Mantido o MicroG principal como `app.revanced.android.gms` (compatível com Morphe/ReVanced).
-- Criado o módulo `:gms-proxy` (`gms-proxy/`) em Java puro com `minifyEnabled true` e `shrinkResources true`:
-  - `ProxyBrokerService`: encaminha chamadas Binder (`com.google.*` → `app.revanced.*`) para `app.revanced.android.gms`.
-  - `ProxyContentProvider`: redireciona queries de `com.google.android.gsf.gservices`, `com.google.settings`, `com.google.android.gms.microg.settings` e `com.google.android.gms.chimera`.
-  - `ProxyBroadcastReceiver`: encaminha broadcasts GCM/C2DM.
-  - `ProxyAccountAuthenticatorService` + `authenticator.xml`: registra `accountType="com.google"` delegando login para `app.revanced.android.gms`.
+## 4. Lightweight Proxy Module (`:gms-proxy` → `com.google.android.gms`)
+- Kept the main MicroG package as `app.revanced.android.gms` (compatible with Morphe/ReVanced).
+- Added the pure-Java `:gms-proxy` (`gms-proxy/`) module with `minifyEnabled true` and `shrinkResources true`:
+  - `ProxyBrokerService`: forwards Binder calls (`com.google.*` → `app.revanced.*`) to `app.revanced.android.gms`.
+  - `ProxyContentProvider`: forwards queries for `com.google.android.gsf.gservices`, `com.google.settings`, `com.google.android.gms.microg.settings`, and `com.google.android.gms.chimera`.
+  - `ProxyBroadcastReceiver`: forwards GCM/C2DM broadcasts.
+  - `ProxyAccountAuthenticatorService` + `authenticator.xml`: registers `accountType="com.google"` and delegates sign-in to `app.revanced.android.gms`.
 
-## 5. Build e Compilação
-- Adicionado `android.overridePathCheck=true` em `gradle.properties` para suportar caminhos Windows com caracteres não-ASCII.
-- Compilação validada com `./gradlew :play-services-core:assembleDefaultDebug :gms-proxy:assembleDebug`:
+## 5. Build & Verification
+- Added `android.overridePathCheck=true` to `gradle.properties` to support non-ASCII Windows paths.
+- Verified build with `./gradlew :play-services-core:assembleDefaultDebug :gms-proxy:assembleDebug`:
   - `app.revanced.android.gms-255070317.apk` (`120.13 MB`)
   - `gms-proxy-debug.apk` (`15.2 KB`)
