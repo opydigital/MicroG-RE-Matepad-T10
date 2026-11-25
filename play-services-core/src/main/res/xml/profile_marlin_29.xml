@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2024 microG Project Team
+  ~ SPDX-License-Identifier: CC0-1.0
+  -->
+<profile name="Google Pixel XL (Android 10)" product="marlin" sdk="29" id="marlin_29">
+    <data key="Build.BOARD" value="marlin" />
+    <data key="Build.BOOTLOADER" value="8996-012001-1908071822" />
+    <data key="Build.BRAND" value="google" />
+    <data key="Build.CPU_ABI" value="arm64-v8a" />
+    <data key="Build.CPU_ABI2" value="" />
+    <data key="Build.DEVICE" value="marlin" />
+    <data key="Build.DISPLAY" value="QP1A.191005.007.A3" />
+    <data key="Build.FINGERPRINT" value="google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys" />
+    <data key="Build.HARDWARE" value="marlin" />
+    <data key="Build.HOST" value="abfarm-01007" />
+    <data key="Build.ID" value="QP1A.191005.007.A3" />
+    <data key="Build.MANUFACTURER" value="Google" />
+    <data key="Build.MODEL" value="Pixel XL" />
+    <data key="Build.PRODUCT" value="marlin" />
+    <data key="Build.RADIO" value="8996-130361-1905270421" />
+    <data key="Build.TAGS" value="release-keys" />
+    <data key="Build.TIME" value="1572559660000" />
+    <data key="Build.TYPE" value="user" />
+    <data key="Build.USER" value="android-build" />
+    <data key="Build.VERSION.CODENAME" value="REL" />
+    <data key="Build.VERSION.INCREMENTAL" value="5972272" />
+    <data key="Build.VERSION.RELEASE" value="10" />
+    <data key="Build.VERSION.SECURITY_PATCH" value="2019-10-05" />
+    <data key="Build.VERSION.SDK" value="29" />
+    <data key="Build.VERSION.SDK_INT" value="29" />
+    <data key="Build.VERSION.DEVICE_INITIAL_SDK_INT" value="24" />
+    <data key="Build.SUPPORTED_ABIS" value="arm64-v8a,armeabi-v7a,armeabi" />
+
+    <serial template="" />
+</profile>

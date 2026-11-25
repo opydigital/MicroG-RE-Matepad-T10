@@ -1,0 +1,34 @@
+/*
+ * SPDX-FileCopyrightText: 2024 microG Project Team
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.google.android.gms.proxy'
+
+    compileSdkVersion androidCompileSdk
+    buildToolsVersion "$androidBuildVersionTools"
+
+    defaultConfig {
+        applicationId "com.google.android.gms"
+        minSdkVersion androidMinSdk
+        targetSdkVersion androidTargetSdk
+        versionCode appVersionCode
+        versionName "${version}-proxy"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}

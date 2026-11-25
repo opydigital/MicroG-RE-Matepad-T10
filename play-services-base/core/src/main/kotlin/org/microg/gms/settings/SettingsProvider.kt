@@ -255,9 +255,9 @@ class SettingsProvider : ContentProvider() {
     private fun queryAuth(p: Array<out String>): Cursor = MatrixCursor(p).addRow(p) { key ->
         when (key) {
             Auth.TRUST_GOOGLE -> getSettingsBoolean(key, true)
-            Auth.VISIBLE -> getSettingsBoolean(key, false)
+            Auth.VISIBLE -> getSettingsBoolean(key, true)
             Auth.INCLUDE_ANDROID_ID -> getSettingsBoolean(key, true)
-            Auth.STRIP_DEVICE_NAME -> getSettingsBoolean(key, false)
+            Auth.STRIP_DEVICE_NAME -> getSettingsBoolean(key, true)
             Auth.TWO_STEP_VERIFICATION -> getSettingsBoolean(key, false)
             Auth.FIND_DEVICES -> getSettingsBoolean(key, false)
             else -> throw IllegalArgumentException("Unknown key: $key")
@@ -349,7 +349,7 @@ class SettingsProvider : ContentProvider() {
 
     private fun queryProfile(p: Array<out String>): Cursor = MatrixCursor(p).addRow(p) { key ->
         when (key) {
-            Profile.PROFILE -> getSettingsString(key, "auto")
+            Profile.PROFILE -> getSettingsString(key, "marlin_29")
             Profile.SERIAL -> getSettingsString(key)
             else -> throw IllegalArgumentException("Unknown key: $key")
         }

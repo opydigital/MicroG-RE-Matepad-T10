@@ -73,7 +73,7 @@ dependencies {
     // Stadia/HMS only offered once their API key has been configured).
     implementation project(':play-services-maps-core-mapbox')
     implementation project(':play-services-maps-core-vtm')
-    implementation project(':play-services-maps-core-hms')
+    if (hasModule("maps_hms", false)) implementation project(':play-services-maps-core-hms')
     defaultRuntimeOnly project(':play-services-location-core-provider')
 
     if (hasModule("nearby", true)) runtimeOnly project(':play-services-nearby-core-package')
