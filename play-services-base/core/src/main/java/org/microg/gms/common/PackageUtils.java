@@ -189,7 +189,11 @@ public class PackageUtils {
         }
         String digest = bytesToSumString(firstSignatureDigestBytes(packageManager, packageName, useSigningInfo));
         // spoof or use real one
-        return PackageSpoofUtils.spoofStringSignature(packageManager, packageName, digest);
+        String spoofed = PackageSpoofUtils.spoofStringSignature(packageManager, packageName, digest);
+        if (Constants.VENDING_PACKAGE_NAME.equals(packageName) && spoofed != null) {
+            return GMS_PACKAGE_SIGNATURE_SHA1;
+        }
+        return spoofed;
     }
 
     @Deprecated

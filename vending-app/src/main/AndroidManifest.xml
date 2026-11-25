@@ -88,6 +88,10 @@
             android:name="org.microg.gms.profile:source-package"
             android:value="com.google.android.gms" />
 
+        <meta-data
+            android:name="${basePackageName}.android.gms.SPOOFED_PACKAGE_SIGNATURE"
+            android:value="38918a453d07199354f8b19af05ec6562ced5788" />
+
         <activity
             android:name=".GrantFakeSignaturePermissionActivity"
             android:exported="true"
