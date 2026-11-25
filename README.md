@@ -15,15 +15,15 @@ A fork of [MorpheApp/MicroG-RE](https://github.com/MorpheApp/MicroG-RE) optimize
 3. **2 GB RAM Optimization (No HMS):**
    - Excluded `:play-services-maps:core:hms` from the default build (via `modules.maps_hms=false`), keeping only **Mapbox/MapLibre** and **VTM** to reduce APK size and memory footprint.
 4. **Main App + Lightweight Proxy Architecture (`:gms-proxy`):**
-   - **Main APK (`app.revanced.android.gms`):** Full MicroG implementation for **Morphe / ReVanced** apps.
-   - **Proxy APK (`com.google.android.gms`):** Ultra-lightweight [gms-proxy](gms-proxy/) module (~15 KB) that forwards Binder calls, `ContentProvider`s, GCM/C2DM broadcasts, and account login flows to `app.revanced.android.gms`, allowing apps to detect `com.google.android.gms` without running a second full MicroG process in memory.
+   - **Main APK (`com.google.android.gms`):** Full MicroG implementation for **standard GMS** (including native apps and notifications).
+   - **Proxy APK (`app.revanced.android.gms`):** Ultra-lightweight [gms-proxy](gms-proxy/) module (~15 KB) that forwards Binder calls, `ContentProvider`s, GCM/C2DM broadcasts, and account login flows from **Morphe / ReVanced** apps to `com.google.android.gms`, without running a second full MicroG process in memory.
 
 ---
 
 ## Build Artifacts
 
-- `app.revanced.android.gms-255070317.apk` — Main MicroG (`play-services-core`, `default` flavor)
-- `gms-proxy-debug.apk` — Lightweight proxy (`com.google.android.gms`)
+- `com.google.android.gms-255070317.apk` — Main MicroG (`play-services-core`, `default` flavor)
+- `gms-proxy-debug.apk` — Lightweight Morphe/ReVanced proxy (`app.revanced.android.gms`)
 
 For detailed modification notes, see [CHANGELOG_CUSTOM.md](CHANGELOG_CUSTOM.md).
 

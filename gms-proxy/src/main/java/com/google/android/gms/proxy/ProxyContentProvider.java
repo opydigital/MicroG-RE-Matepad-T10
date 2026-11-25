@@ -9,8 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 /**
- * Forwards ContentProvider queries from {@code com.google.*} authorities
- * to their {@code app.revanced.*} counterparts in the main MicroG installation.
+ * Forwards ContentProvider queries from {@code app.revanced.*} authorities
+ * to their {@code com.google.*} counterparts in the main MicroG installation.
  */
 public class ProxyContentProvider extends ContentProvider {
 
@@ -18,7 +18,7 @@ public class ProxyContentProvider extends ContentProvider {
         if (uri == null || uri.getAuthority() == null) {
             return uri;
         }
-        String targetAuthority = uri.getAuthority().replace("com.google", "app.revanced");
+        String targetAuthority = uri.getAuthority().replace("app.revanced", "com.google");
         return uri.buildUpon().authority(targetAuthority).build();
     }
 
@@ -69,7 +69,7 @@ public class ProxyContentProvider extends ContentProvider {
             return null;
         }
         try {
-            return cr.call(Uri.parse("content://app.revanced.android.gsf.gservices"), method, arg, extras);
+            return cr.call(Uri.parse("content://com.google.android.gsf.gservices"), method, arg, extras);
         } catch (Exception e) {
             return null;
         }

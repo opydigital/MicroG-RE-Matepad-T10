@@ -14,16 +14,16 @@ Summary of changes applied on top of `MorpheApp/MicroG-RE` for older Huawei devi
 ## 3. Maps Optimization (No HMS)
 - Made `:play-services-maps:core:hms` optional and disabled by default via `hasModule("maps_hms", false)` in `settings.gradle` and `play-services-core/build.gradle`, keeping **Mapbox/MapLibre** and **VTM** to reduce APK size and RAM usage.
 
-## 4. Lightweight Proxy Module (`:gms-proxy` → `com.google.android.gms`)
-- Kept the main MicroG package as `app.revanced.android.gms` (compatible with Morphe/ReVanced).
-- Added the pure-Java `:gms-proxy` (`gms-proxy/`) module with `minifyEnabled true` and `shrinkResources true`:
-  - `ProxyBrokerService`: forwards Binder calls (`com.google.*` → `app.revanced.*`) to `app.revanced.android.gms`.
-  - `ProxyContentProvider`: forwards queries for `com.google.android.gsf.gservices`, `com.google.settings`, `com.google.android.gms.microg.settings`, and `com.google.android.gms.chimera`.
+## 4. Lightweight Proxy Module (`:gms-proxy` → `app.revanced.android.gms`)
+- Set the main MicroG package (`basePackageName`) to `com.google` (`com.google.android.gms`) for full native app & notification support.
+- Configured the pure-Java `:gms-proxy` (`gms-proxy/`) module as `app.revanced.android.gms` (Morphe/ReVanced proxy) with `minifyEnabled true` and `shrinkResources true`:
+  - `ProxyBrokerService`: forwards Binder calls (`app.revanced.*` → `com.google.*`) to `com.google.android.gms`.
+  - `ProxyContentProvider`: forwards queries for `app.revanced.android.gsf.gservices`, `app.revanced.settings`, `app.revanced.android.gms.microg.settings`, and `app.revanced.android.gms.chimera`.
   - `ProxyBroadcastReceiver`: forwards GCM/C2DM broadcasts.
-  - `ProxyAccountAuthenticatorService` + `authenticator.xml`: registers `accountType="com.google"` and delegates sign-in to `app.revanced.android.gms`.
+  - `ProxyAccountAuthenticatorService` + `authenticator.xml`: registers `accountType="app.revanced"` and delegates sign-in to `com.google.android.gms`.
 
 ## 5. Build & Verification
 - Added `android.overridePathCheck=true` to `gradle.properties` to support non-ASCII Windows paths.
 - Verified build with `./gradlew :play-services-core:assembleDefaultDebug :gms-proxy:assembleDebug`:
-  - `app.revanced.android.gms-255070317.apk` (`120.13 MB`)
-  - `gms-proxy-debug.apk` (`15.2 KB`)
+  - `com.google.android.gms-255070317.apk`
+  - `gms-proxy-debug.apk` (`app.revanced.android.gms`)

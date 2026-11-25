@@ -2,35 +2,35 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <queries>
-        <package android:name="app.revanced.android.gms" />
+        <package android:name="com.google.android.gms" />
     </queries>
 
     <permission
-        android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"
+        android:name="app.revanced.android.providers.gsf.permission.READ_GSERVICES"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.google.android.c2dm.permission.RECEIVE"
+        android:name="app.revanced.android.c2dm.permission.RECEIVE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.google.android.c2dm.permission.SEND"
+        android:name="app.revanced.android.c2dm.permission.SEND"
         android:protectionLevel="privileged|signature" />
 
-    <uses-permission android:name="app.revanced.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="app.revanced.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="false"
-        android:label="GMS Proxy (MicroG)">
+        android:label="Morphe Proxy (MicroG)">
 
         <!-- ContentProvider proxies -->
         <provider
             android:name=".ProxyContentProvider"
-            android:authorities="com.google.android.gsf.gservices;com.google.settings;com.google.android.gms.microg.settings;com.google.android.gms.chimera"
+            android:authorities="app.revanced.android.gsf.gservices;app.revanced.settings;app.revanced.android.gms.microg.settings;app.revanced.android.gms.chimera"
             android:exported="true" />
 
-        <!-- Account Authenticator stub for com.google -->
+        <!-- Account Authenticator stub for app.revanced -->
         <service
             android:name=".ProxyAccountAuthenticatorService"
             android:exported="true">
@@ -47,16 +47,16 @@
             android:name=".ProxyBrokerService"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.gms.common.service.START" />
-                <action android:name="com.google.android.gms.auth.account.data.service.START" />
-                <action android:name="com.google.android.gms.auth.account.authenticator.tv.service.START" />
-                <action android:name="com.google.android.gms.auth.account.authenticator.auto.service.START" />
-                <action android:name="com.google.android.gms.auth.account.authenticator.chromeos.service.START" />
-                <action android:name="com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START" />
-                <action android:name="com.google.android.gms.measurement.START" />
-                <action android:name="com.google.android.gms.checkin.START" />
-                <action android:name="com.google.android.gms.gcm.START" />
-                <action android:name="com.google.android.gms.iid.START" />
+                <action android:name="app.revanced.android.gms.common.service.START" />
+                <action android:name="app.revanced.android.gms.auth.account.data.service.START" />
+                <action android:name="app.revanced.android.gms.auth.account.authenticator.tv.service.START" />
+                <action android:name="app.revanced.android.gms.auth.account.authenticator.auto.service.START" />
+                <action android:name="app.revanced.android.gms.auth.account.authenticator.chromeos.service.START" />
+                <action android:name="app.revanced.android.gms.chimera.container.moduleinstall.ModuleInstallService.START" />
+                <action android:name="app.revanced.android.gms.measurement.START" />
+                <action android:name="app.revanced.android.gms.checkin.START" />
+                <action android:name="app.revanced.android.gms.gcm.START" />
+                <action android:name="app.revanced.android.gms.iid.START" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
@@ -66,9 +66,9 @@
             android:name=".ProxyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.REGISTER" />
-                <action android:name="com.google.android.c2dm.intent.UNREGISTER" />
-                <action android:name="com.google.android.gms.gcm.REGISTER" />
+                <action android:name="app.revanced.android.c2dm.intent.REGISTER" />
+                <action android:name="app.revanced.android.c2dm.intent.UNREGISTER" />
+                <action android:name="app.revanced.android.gms.gcm.REGISTER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>

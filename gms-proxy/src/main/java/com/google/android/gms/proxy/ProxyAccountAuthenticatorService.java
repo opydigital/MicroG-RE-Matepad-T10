@@ -12,8 +12,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 
 /**
- * Minimal AccountAuthenticator for {@code com.google} that delegates account login
- * to the main {@code app.revanced.android.gms} installation.
+ * Minimal AccountAuthenticator for {@code app.revanced} that delegates account login
+ * to the main {@code com.google.android.gms} installation.
  */
 public class ProxyAccountAuthenticatorService extends Service {
     private Authenticator authenticator;
@@ -45,7 +45,7 @@ public class ProxyAccountAuthenticatorService extends Service {
                                  String authTokenType, String[] requiredFeatures, Bundle options) {
             Intent intent = new Intent();
             intent.setComponent(new ComponentName(
-                    "app.revanced.android.gms",
+                    "com.google.android.gms",
                     "org.microg.gms.auth.login.LoginActivity"
             ));
             intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
@@ -64,7 +64,7 @@ public class ProxyAccountAuthenticatorService extends Service {
                                    String authTokenType, Bundle options) {
             Bundle result = new Bundle();
             result.putInt(AccountManager.KEY_ERROR_CODE, AccountManager.ERROR_CODE_UNSUPPORTED_OPERATION);
-            result.putString(AccountManager.KEY_ERROR_MESSAGE, "Managed by app.revanced.android.gms");
+            result.putString(AccountManager.KEY_ERROR_MESSAGE, "Managed by com.google.android.gms");
             return result;
         }
 

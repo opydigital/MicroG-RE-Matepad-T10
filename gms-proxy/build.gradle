@@ -12,11 +12,11 @@ android {
     buildToolsVersion "$androidBuildVersionTools"
 
     defaultConfig {
-        applicationId "com.google.android.gms"
+        applicationId "app.revanced.android.gms"
         minSdkVersion androidMinSdk
         targetSdkVersion androidTargetSdk
         versionCode appVersionCode
-        versionName "${version}-proxy"
+        versionName "${version}-morphe-proxy"
     }
 
     buildTypes {

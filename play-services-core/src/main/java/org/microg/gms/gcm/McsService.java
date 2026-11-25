@@ -618,6 +618,7 @@ public class McsService extends Service implements Handler.Callback {
         String deliveryAction = ACTION_C2DM_RECEIVE_LEGACY;
         String[] actionsToProbe = new String[] {
             ACTION_C2DM_RECEIVE_PACKAGE,
+            "app.revanced.android.c2dm.intent.RECEIVE",
             "app.morphe.android.c2dm.intent.RECEIVE",
             ACTION_C2DM_RECEIVE_LEGACY
         };

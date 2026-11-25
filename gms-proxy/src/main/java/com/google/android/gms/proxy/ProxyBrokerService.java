@@ -17,12 +17,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Lightweight Binder proxy service that forwards standard {@code com.google.android.gms.*}
- * service bindings to the main MicroG installation ({@code app.revanced.android.gms}).
+ * Lightweight Binder proxy service that forwards {@code app.revanced.android.gms.*}
+ * service bindings to the main MicroG installation ({@code com.google.android.gms}).
  */
 public class ProxyBrokerService extends Service {
-    private static final String TAG = "GoogleGmsProxy";
-    private static final String TARGET_PACKAGE = "app.revanced.android.gms";
+    private static final String TAG = "MorpheGmsProxy";
+    private static final String TARGET_PACKAGE = "com.google.android.gms";
     private static final long BIND_TIMEOUT_SECONDS = 5L;
 
     private final List<ServiceConnection> activeConnections = new ArrayList<>();
@@ -35,7 +35,7 @@ public class ProxyBrokerService extends Service {
         Intent targetIntent = new Intent(intent);
         String action = intent.getAction();
         if (action != null) {
-            targetIntent.setAction(action.replace("com.google.", "app.revanced."));
+            targetIntent.setAction(action.replace("app.revanced.", "com.google."));
         }
         targetIntent.setPackage(TARGET_PACKAGE);
         targetIntent.setComponent(null);

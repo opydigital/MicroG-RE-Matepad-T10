@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Forwards GCM/C2DM registration broadcasts from {@code com.google.*}
- * to {@code app.revanced.android.gms}.
+ * Forwards GCM/C2DM registration broadcasts from {@code app.revanced.*}
+ * to {@code com.google.android.gms}.
  */
 public class ProxyBroadcastReceiver extends BroadcastReceiver {
-    private static final String TARGET_PACKAGE = "app.revanced.android.gms";
+    private static final String TARGET_PACKAGE = "com.google.android.gms";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -19,7 +19,7 @@ public class ProxyBroadcastReceiver extends BroadcastReceiver {
         Intent targetIntent = new Intent(intent);
         String action = intent.getAction();
         if (action != null) {
-            targetIntent.setAction(action.replace("com.google.", "app.revanced."));
+            targetIntent.setAction(action.replace("app.revanced.", "com.google."));
         }
         targetIntent.setPackage(TARGET_PACKAGE);
         targetIntent.setComponent(null);
