@@ -113,10 +113,6 @@ class SettingsFragment : ResourceSettingsFragment() {
             openGithub()
             true
         }
-        findPreference<Preference>(PREF_UPDATE)?.setOnPreferenceClickListener {
-            AppUpdater.checkManually(requireActivity())
-            true
-        }
         setupLanguagePreference()
 
         findPreference<Preference>(PREF_ABOUT)!!.apply {
@@ -356,7 +352,7 @@ class SettingsFragment : ResourceSettingsFragment() {
         const val PREF_IGNORE_BATTERY_OPTIMIZATION = "pref_ignore_battery_optimization"
 
         private const val ACTIVITY_LAUNCHER_CONTROL = "org.microg.gms.ui.SettingsActivityLauncher"
-        private const val PREF_GITHUB_URL = "https://github.com/MorpheApp/MicroG-RE"
+        private const val PREF_GITHUB_URL = "https://github.com/opydigital/MicroG-RE-Matepad-T10"
     }
 
     init {
