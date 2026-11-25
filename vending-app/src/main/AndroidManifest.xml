@@ -100,7 +100,6 @@
 
         <service
             android:name="com.android.vending.licensing.LicensingService"
-            android:permission="com.android.vending.CHECK_LICENSE"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.licensing.ILicensingService" />

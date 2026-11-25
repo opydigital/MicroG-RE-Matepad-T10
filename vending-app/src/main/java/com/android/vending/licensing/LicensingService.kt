@@ -186,7 +186,6 @@ class LicensingService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder {
-
         ensureInitialized(this)
 
         contentResolver.query(
@@ -195,11 +194,13 @@ class LicensingService : Service() {
             null,
             null,
             null
-        ).use { cursor ->
-            if (cursor != null) {
-                cursor.moveToNext()
+        )?.use { cursor ->
+            if (cursor.moveToNext()) {
                 androidId = java.lang.Long.toHexString(cursor.getLong(0))
             }
+        }
+        if (!::androidId.isInitialized) {
+            androidId = ""
         }
         accountManager = AccountManager.get(this)
         httpClient = HttpClient()
@@ -213,6 +214,6 @@ class LicensingService : Service() {
         private const val KEY_V2_RESULT_JWT = "LICENSE_DATA"
 
         private val CHECKIN_SETTINGS_PROVIDER: Uri =
-            Uri.parse("content://${BuildConfig.BASE_PACKAGE_NAME}.settings/check-in")
+            Uri.parse("content://${BuildConfig.BASE_PACKAGE_NAME}.android.gms.microg.settings/check-in")
     }
 }

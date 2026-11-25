@@ -43,7 +43,7 @@ buildscript {
     ext.androidBuildVersionTools = '35.0.0'
 
     ext.androidMinSdk = 21
-    ext.androidTargetSdk = 34
+    ext.androidTargetSdk = 29
     ext.androidCompileSdk = 36
 
     ext.localProperties = new Properties()
@@ -107,8 +107,8 @@ if (!ignoreGit) {
 // RE specific version name and code
 def ourGmsVersionCode = 255070317
 def ourGmsVersionName = "7.3.3"
-def ourVendingVersionCode = ourGmsVersionCode
-def ourVendingVersionName = ourGmsVersionName
+def ourVendingVersionCode = 80000000 + vendingVersionCode * 100
+def ourVendingVersionName = "0.3.10.${vendingVersionCode}"
 
 logger.lifecycle('Starting build for GMS version {} ({})...', ourGmsVersionName, ourGmsVersionCode)
 

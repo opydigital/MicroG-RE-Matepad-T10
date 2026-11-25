@@ -23,8 +23,8 @@ A fork of [MorpheApp/MicroG-RE](https://github.com/MorpheApp/MicroG-RE) optimize
 
 ## Build Artifacts
 
-- `com.google.android.gms-255070317.apk` — Main MicroG (`play-services-core`, `default` flavor)
-- `vending-app-default-debug.apk` — MicroG Companion (`com.android.vending`)
+- `com.google.android.gms-255070317-hw.apk` — Main MicroG (`play-services-core`, `huawei` flavor)
+- `com.android.vending-84022600-hw.apk` — MicroG Companion (`com.android.vending`, `huawei` flavor)
 
 For detailed modification notes, see [CHANGELOG_CUSTOM.md](CHANGELOG_CUSTOM.md).
 
@@ -33,7 +33,7 @@ For detailed modification notes, see [CHANGELOG_CUSTOM.md](CHANGELOG_CUSTOM.md).
 ## Local Build
 
 ```bash
-./gradlew :play-services-core:assembleDefaultDebug :vending-app:assembleDefaultDebug
+./gradlew :play-services-core:assembleHuaweiDebug :vending-app:assembleHuaweiDebug
 ```
 
 ## License
