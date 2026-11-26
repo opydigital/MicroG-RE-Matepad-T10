@@ -30,7 +30,7 @@
 
         <service
             android:name="com.huawei.signature.diff.SignatureService"
-            android:process=":signature"
+            android:process=":persistent"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.huawei.signature.diff" />

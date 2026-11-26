@@ -2,6 +2,8 @@
 #-libraryjar ../unifiednlp-compat/build/classes/java/main
 -dontwarn java.awt.**
 -dontwarn javax.annotation.**
+-dontwarn com.android.org.conscrypt.**
+-dontwarn org.apache.harmony.xnet.provider.jsse.**
 
 # External libs
 -dontwarn okio.**

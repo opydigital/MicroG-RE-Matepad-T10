@@ -27,26 +27,28 @@ dependencies {
     implementation project(':play-services-auth-blockstore-core')
     implementation project(':play-services-auth-workaccount-core')
     implementation project(':play-services-base-core')
-    implementation project(':play-services-cast-core')
-    implementation project(':play-services-cast-framework-core')
+    if (hasModule("cast", false)) {
+        implementation project(':play-services-cast-core')
+        implementation project(':play-services-cast-framework-core')
+    }
     implementation project(':play-services-conscrypt-provider-core')
     implementation project(':play-services-cronet-core')
     implementation project(':play-services-droidguard-core')
     implementation project(':play-services-fido-core')
-    implementation project(':play-services-fitness-core')
+    if (hasModule("fitness", false)) implementation project(':play-services-fitness-core')
     implementation project(':play-services-gmscompliance-core')
     implementation project(':play-services-identity-credentials-core')
     implementation project(':play-services-location-core')
     implementation project(':play-services-location-core-base')
     implementation project(':play-services-oss-licenses-core')
-    implementation project(':play-services-panorama-core')
-    implementation project(':play-services-pay-core')
+    if (hasModule("panorama", false)) implementation project(':play-services-panorama-core')
+    if (hasModule("pay", false)) implementation project(':play-services-pay-core')
     implementation project(':play-services-recaptcha-core')
     implementation project(':play-services-safetynet-core')
-    implementation project(':play-services-tapandpay-core')
-    implementation project(':play-services-threadnetwork-core')
+    if (hasModule("tapandpay", false)) implementation project(':play-services-tapandpay-core')
+    if (hasModule("threadnetwork", false)) implementation project(':play-services-threadnetwork-core')
     implementation project(':play-services-vision-core')
-    implementation project(':play-services-wearable-core')
+    if (hasModule("wearable", false)) implementation project(':play-services-wearable-core')
 
     implementation project(':play-services-core-proto')
 
@@ -66,7 +68,7 @@ dependencies {
     implementation project(':play-services-recaptcha')
     implementation project(':play-services-safetynet')
     implementation project(':play-services-tasks-ktx')
-    implementation project(':play-services-fitness')
+    if (hasModule("fitness", false)) implementation project(':play-services-fitness')
 
     // All renderers ship in one APK and are selected at runtime via the MicroG
     // "Map renderer" setting (Mapbox/MapLibre by default, VTM always available, and
@@ -76,7 +78,7 @@ dependencies {
     if (hasModule("maps_hms", false)) implementation project(':play-services-maps-core-hms')
     defaultRuntimeOnly project(':play-services-location-core-provider')
 
-    if (hasModule("nearby", true)) runtimeOnly project(':play-services-nearby-core-package')
+    if (hasModule("nearby", false)) runtimeOnly project(':play-services-nearby-core-package')
 
     // AndroidX UI
     implementation "androidx.multidex:multidex:$multidexVersion"
@@ -213,8 +215,10 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), '../proguard.flags'
         }
     }
 
